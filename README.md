@@ -28,7 +28,7 @@ To run _Fresh Tomatoes Movie Trailer Website_ Follow the steps below:
 + Now when you are in Python shell, Goto File -> Open and look for the folder in which you saved these files
 + Now select entertainment_center.py and click on _Open_.
 + Now you will see entertainment_center.py file opened on your desktop.
-+ From inside entertainment_center.py file, **hit** `f5` key or **click on** `Run` and then **click on**  `Run Module`.
++ From inside entertainment_center.py file, **hit** `f5` key **_OR_**  **click on** `Run` and then **click on**  `Run Module`.
 + Now your website should be opened successfully in your web browser.
 
 <br>
