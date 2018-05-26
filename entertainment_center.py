@@ -1,190 +1,73 @@
-import webbrowser
-import os
-import re
+import fresh_tomatoes
+import media
 
-                # Styles and scripting for the page
-
-main_page_head = \
-    '''
-<head>
-    <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
-
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <style type="text/css" media="screen">
-        body {
-            padding-top: 80px;
-        }
-        #trailer .modal-dialog {
-            margin-top: 200px;
-            width: 640px;
-            height: 480px;
-        }
-        .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
-        }
-        #trailer-video {
-            width: 100%;
-            height: 100%;
-        }
-        .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
-        }
-        .movie-tile:hover {
-            background-color: #E7A07F;
-            cursor: pointer;
-            color: #FEFBFB;
-        }
-        .scale-media {
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-        .scale-media iframe {
-            border: none;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: white;
-        }
-
-        /******  FEW CHANGES MADE IN BOOTSTRAP CSS STARTS FROM HERE  ******/
-
-        .navbar-inverse .navbar-brand {
-        color: #E7A07F;
-        }
-
-    </style>
-
-    <script type="text/javascript" charset="utf-8">
-
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
-        });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
-        });
-        // Animate in the movies when the page loads
-        $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
-            $(this).next("div").show("fast", showNext);
-          });
-        });
-    </script>
-</head>
-'''
-
-                # The main page layout and title bar
-
-main_page_content = \
-    '''
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <!-- Trailer Video Modal -->
-    <div class="modal" id="trailer">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
-            <img src="https://goo.gl/NAUJ93"/>
-          </a>
-          <div class="scale-media" id="trailer-video-container">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Page Content -->
-    <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      {movie_tiles}
-    </div>
-  </body>
-</html>
-'''
-
-                # A single movie entry html template
-
-movie_tile_content = \
-    '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
-</div>
-'''
+lone_survivor = media.Movie(
+    "Lone Suvivor",
+    "Lone Survivor is a 2013 American biographical war thriller film based on the 2007 eponymous non-fiction book",  # NOQA
+    "https://movieposters2.com/images/1301381-b.jpg",
+    "https://youtu.be/yoLFk4JK_RM")
 
 
-def create_movie_tiles_content(movies):
-
-                # The HTML content for this section of the page
-
-    content = ''
-    for movie in movies:
-
-                # Extract the youtube ID from the url
-
-        youtube_id_match = re.search(r'(?<=v=)[^&#]+', movie.trailer_youtube_url)  # NOQA
-        youtube_id_match = youtube_id_match \
-            or re.search(r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
-        trailer_youtube_id = \
-            (youtube_id_match.group(0) if youtube_id_match else None)
-
-                # Append the tile for the movie with its content filled in
-
-        content += movie_tile_content.format(
-            movie_title=movie.title,
-            poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id)
-    return content
+adrift = media.Movie(
+    "Adrift",
+    "Story of 2 avid sailors setting out on a journey across the ocean, meets a catastrophic hurricanes in recorded history.",  # NOQA
+    "https://goo.gl/EaCfqR",
+    "https://youtu.be/n9ukI7khQpE")
 
 
-def open_movies_page(movies):
+ratatouille = media.Movie(
+    "Ratatouille",
+    "Remy dreams of becoming a great chef, despite being a rat in a definitely rodent-phobic profession.",  # NOQA
+    "https://goo.gl/35XcjG",
+    "https://youtu.be/uVeNEbh3A4U")
 
-                # Create or overwrite the output file
 
-    output_file = open('fresh_tomatoes.html', 'w')
+big_hero_6 = media.Movie(
+    "Big Hero 6",
+    "Determined to uncover the mystery, Hiro transforms his friends into a band of high-tech heroes called Big Hero 6",  # NOQA
+    "https://goo.gl/RQQzAd",
+    "https://youtu.be/z3biFxZIJOQ")
 
-                # Replace the placeholder for the movie tiles with the actual dynamically generated content # NOQA
 
-    rendered_content = \
-        main_page_content.format(
-            movie_tiles=create_movie_tiles_content(movies)
-            )
+age_of_adaline = media.Movie(
+    "Age Of Adaline",
+    "Adaline Bowman has miraculously remained a youthful 29 years of age for nearly eight decades, and hides her secret",  # NOQA
+    "https://goo.gl/gP3GLC",
+    "https://youtu.be/7UzSekc0LoQ")
 
-                # Output the file
 
-    output_file.write(main_page_head + rendered_content)
-    output_file.close()
+me_before_you = media.Movie(
+    "Me Before You",
+    "Young and quirky Louisa, is put to the test when she becomes a caregiver for Will Traynoraccident.",  # NOQA
+    "https://goo.gl/qk82bS",
+    "https://youtu.be/Eh993__rOxA")
 
-                # open the output file in the browser
 
-    url = os.path.abspath(output_file.name)
-    webbrowser.open('file://' + url, new=2)  # open in a new tab, if possible
+kingsman = media.Movie(
+    "Kingsman: The Golden Circle",
+    "It's James Bond On Laughing Gas.",
+    "https://goo.gl/g3gh53",
+    "https://youtu.be/6Nxc-3WpMbg")
+
+
+mission_impossible = media.Movie(
+    "Mission Impossible: Rogue Nation",
+    "With the IMF now disbanded and Ethan Hunt out in the cold, a new threat - called the Syndicate - soon emerges",  # NOQA
+    "https://goo.gl/mYiuzQ",
+    "https://youtu.be/pXwaKB7YOjw")
+
+
+camp_xray = media.Movie(
+    "Camp X Ray",
+    "A female guard at Guantanamo Bay forms an unlikely friendship with one of the facility's longtime detainees.",  # NOQA
+    "https://goo.gl/1MEsqM",
+    "https://youtu.be/V602GMSSo0Y")
+
+
+movies = [
+    lone_survivor, adrift, ratatouille,
+    big_hero_6, age_of_adaline,
+    me_before_you, kingsman,
+    mission_impossible, camp_xray]
+
+fresh_tomatoes.open_movies_page(movies)
