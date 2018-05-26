@@ -21,12 +21,13 @@ Thou the latest version of Python is _Python 3.6.4._ but since this website has 
 
 ## How To Run This Website:
 To run _Fresh Tomatoes Movie Trailer Website_ Follow the steps below:
-+ Download this project from github and make sure you save all these files in one place or folder and remember where you are saving the files
++ Download this project from github, unzip the downloaded zipped folder and make sure you save all these files in one place or folder and remember where you are saving the files
+
 + After that download [Python2](https://www.python.org/downloads/release/python-2715/).
 + After Downloading and installing **Python** on your system.
 + Search for _IDLE_ from start menu (IDLE is a GUI of an integrated development environment for Python).
-+ Now when you are in Python shell, Goto File -> Open and look for the folder in which you saved these files
-+ Now select entertainment_center.py and click on _Open_.
++ Now when you are in Python shell, Goto File -> Open -> look for downloaded(unzipped) folder.
++ Click on "_Nanodegree-Project1-master_" Now select "_entertainment_center.py_" and click on **_Open_**.
 + Now you will see entertainment_center.py file opened on your desktop.
 + From inside entertainment_center.py file, **hit** `f5` key **_OR_**  **click on** `Run` and then **click on**  `Run Module`.
 + Now your website should be opened successfully in your web browser.
