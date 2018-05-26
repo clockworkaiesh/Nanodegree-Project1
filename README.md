@@ -40,8 +40,9 @@ If you want to add new movies to this website follow the  steps below
 - Create new instance for Movie class as shown below
 
 ```
-kingsman = media.Movie("Kingsman: The Golden Circle", <!-- Title for your movie -->
-                       "It's James Bond On Laughing Gas.", <!-- Story line for your movie which appears right below the movie poster -->
-                       "https://goo.gl/g3gh53", <!-- youtube trailer link for your movie -- >
-                       "https://youtu.be/6Nxc-3WpMbg") <!-- poster image for your movie -->
+kingsman = media.Movie(
+"Kingsman: The Golden Circle", <!-- Title for your movie -->
+"It's James Bond On Laughing Gas.", <!-- Story line for your movie which appears right below the movie poster -->
+"https://goo.gl/g3gh53", <!-- youtube trailer link for your movie -- >
+"https://youtu.be/6Nxc-3WpMbg") <!-- poster image for your movie -->
 ```
