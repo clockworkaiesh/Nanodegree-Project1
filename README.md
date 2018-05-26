@@ -1,7 +1,7 @@
 # Nanodegree-Project1 
-## Fresh Tomatoes Movie Trailers
+## Fresh Tomatoes Movie Trailer Website
 (_This project is part of Udacity's FullStack web development Nanodegree_)
-**Fresh Tomatoes Movie Trailers Website** Is a place where you can watch trailers of my favourite movies. To watch a trailer you need to click on _movie poster_ and the trailer for it will pop up right there.
+**Fresh Tomatoes Movie Trailer Website** Is a place where you can watch trailers of my favourite movies. To watch a trailer you need to click on _movie poster_ and the trailer for it will pop up right there.
 
 <br>
 
