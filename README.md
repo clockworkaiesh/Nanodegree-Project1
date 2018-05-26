@@ -11,7 +11,7 @@ This project includes following python files:
 - fresh_tomatoes.py
 
 
-## To add more movies to the website
+## To add more movies to the website:
 
 If you want to add new movies to this website follow the  steps below
 - Goto entertainment_center.py
@@ -20,11 +20,20 @@ If you want to add new movies to this website follow the  steps below
 ```
 kingsman = media.Movie("Kingsman: The Golden Circle", <!-- Title for your movie -->
                        "It's James Bond On Laughing Gas.", <!-- Story line for your movie which appears right below the movie poster -->
-                       "https://20ui41tp7v127j03rcnp97oh-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/sabado_kingsman.jpg",  # NOQA <!-- youtube trailer link for your movie -- >
+                       "https://goo.gl/g3gh53",  # NOQA <!-- youtube trailer link for your movie -- >
                        "https://youtu.be/6Nxc-3WpMbg") <!-- poster image for your movie -->
 ```
 
 
-## Requirements
+## Requirements:
 
 Thou the latest version of Python is _Python 3.6.4._ but since this website has been created in _Python2_ so for this website to run successfully you might need to instal [Python2](https://www.python.org/downloads/release/python-2715/) on your system if you never before installed any version of Python before.
+
+## How To Run This Website:
+To run _Fresh Tomatoes Movie Trailer Website_ Follow the steps below:
++ After Downloading and installing **Python** on your system.
++ Search for _IDLE_ from start menu (A GUI of an integrated development environment for Python).
++ Now when you are in Python shell, Goto File -> Open -> select entertainment_center.py -> and open it.
++ Now you will see entertainment_center.py file opened.
++ From inside entertainment_center.py file, **hit** `f5` key or **click on** `Run` and then **click on**  `Run Module`.
++ Now your website should be opened successfully in your web browser.
